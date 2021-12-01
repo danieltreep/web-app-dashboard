@@ -4,6 +4,10 @@
     font-family: 'Abel', sans-serif;
     font-weight: normal;
 }
+/* Layout */
+main {
+    grid-area: main;
+}
 header {
     background-color: rgb(106, 107, 201);
     display: grid;
@@ -11,6 +15,7 @@ header {
     justify-items: center;
     align-items: center;
     padding: .5rem 0;
+    grid-area: header;
 }
 h1,
 h3 {
@@ -51,6 +56,7 @@ h4 {
     height: 45px;
     align-items: center;
     justify-items: center;
+    grid-area: nav;
 }
 .nav-img {
     height: 25px;
@@ -61,6 +67,7 @@ h4 {
 .dashboard {
     display: grid;
     grid-template-columns: 1fr 2.5fr;
+    grid-area: dashboard;
 }
 h2 {
     font-size: 1.3rem;
@@ -135,11 +142,11 @@ h2 {
 }
 .members-text {
     display: grid;
-    justify-items: center;
+    text-align: center;
 }
 .members-text p,
 .members-text a {
-    margin: 0;
+    margin: 0 auto;
     text-decoration: none;
 }
 .profile-image {
@@ -188,4 +195,105 @@ button {
     justify-self: end;
     background: grey;
     color: white;
+}
+.switch-light {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 1rem;
+    align-items: center;
+}
+#timezone {
+    margin-top: 2rem;
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+    /* Layout */
+    .grid-container {
+        display: grid;
+        grid-template-columns: .6fr 8fr;
+        grid-template-areas: 
+        "header header"
+        "nav main"
+        ;
+    }
+    /* Header */
+    .header {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    /* Nav sidebar */
+    .main-nav {
+        height: 100%;
+        width: 60px;
+        align-items: flex-start;
+        justify-items: center;
+    }
+    .icon-container {
+        display: grid;
+        margin-top: 1rem;
+    }
+    .nav-img {
+        height: 25px;
+        margin: .6rem 1rem;
+    }
+    /* Layout */
+    main {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 
+        "dashboard dashboard"
+        "traffic traffic"
+        "daily mobile"
+        "social social"
+        "members members"
+        "recent recent"
+        "message message"
+        "settings settings";
+        
+    }
+    /* Sections */
+    .traffic {
+        grid-area: traffic;
+    }
+    .traffic-header {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+    }
+    .traffic-nav-link {
+        margin-top: 1rem;
+    }
+    .daily {
+        grid-area: daily;
+    }
+    .mobile {
+        grid-area: mobile;
+        border-left: lightgrey;
+    }
+    .social {
+        grid-area: social;
+    }
+    .all-socials {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        justify-items: center;
+        margin: 0 1rem 1rem;
+    }
+    .social-container {
+        margin: 0 .5rem 0 0;
+    }
+    .members {
+        grid-area: members;
+    }
+    .recent {
+        grid-area: recent;
+    }
+    .message {
+        grid-area: message;
+    }
+    .settings {
+        grid-area: settings;
+    }
 }
