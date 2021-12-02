@@ -106,6 +106,9 @@ h2 {
 .alert p {
     margin: .5rem 0;
 }
+.alert-banner-close:hover {
+    cursor: pointer;
+}
 
 /* Traffic */
 .traffic-nav-link {
@@ -125,8 +128,10 @@ h2 {
     margin: 0;
 }
 /* Charts */
-#traffic-chart {
-    margin: 1rem;
+.widget-container-full,
+.widget-container-half {
+    width: 92vw;
+    margin: 1rem auto;
 }
 #daily-chart {
     margin: 1rem;
@@ -273,9 +278,6 @@ button {
     .container {
         border: solid 1px lightgrey;
     }
-    .alert-banner-close:hover {
-        cursor: pointer;
-    }
 
     /* Nav sidebar */
     .main-nav {
@@ -307,6 +309,9 @@ button {
     }
 
     /* Sections */
+    .widget-container-half {
+        width: 45vw;
+    }
     .traffic {
         grid-area: traffic;
         border-top: none;

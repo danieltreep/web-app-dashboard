@@ -3,7 +3,7 @@ const alertBanner = document.getElementById("alert");
 
 alertBanner.innerHTML = `
     <div class="alert-banner">
-        <p><strong>Alert:</strong> The chickens have escaped!</p>
+        <p><strong>Alert:</strong> The chickens have escaped! Go get 'em</p>
         <p class="alert-banner-close">x</p>
     </div>
     `;
@@ -23,7 +23,7 @@ let trafficData = {
     "4-10", "11-17", "18-24", "25-31"],
     datasets: [{
         data: [750, 1250, 1000, 2000, 1500, 1750, 1250, 1850, 2250, 1500,
-    2500],
+    2800],
         backgroundColor: 'rgba(116, 119, 191, .3)',
         borderWidth: 1,
     }]
@@ -89,7 +89,7 @@ let dailyChart = new Chart(dailyCanvas, {
 const mobileCanvas = document.getElementById("mobile-chart");
 
 const mobileData = {
-    labels: ["Desktop", "Tablet", "Phones", "Screenreader"],
+    labels: ["Desktop", "Tablet", "Phone", "Screenreader"],
     datasets: [{
         
         data: [2000, 550, 500, 50],
