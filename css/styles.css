@@ -124,6 +124,16 @@ h2 {
     padding: 0 1rem;
     margin: 0;
 }
+/* Charts */
+#traffic-chart {
+    margin: 1rem;
+}
+#daily-chart {
+    margin: 1rem;
+}
+#mobile-chart {
+    margin: 1rem;
+}
 /* Socials */
 .all-socials {
     display: grid;
@@ -170,6 +180,10 @@ h2 {
     margin: 1rem;
     padding: 0 0 1rem;
     border-bottom: solid 1px lightgrey;
+}
+.members-container:last-child {
+    border: none;
+    padding-bottom: 0;
 }
 .members-text {
     display: grid;
@@ -259,10 +273,6 @@ button {
     .container {
         border: solid 1px lightgrey;
     }
-    .members-container:last-child {
-        border: none;
-        padding-bottom: 0;
-    }
     .alert-banner-close:hover {
         cursor: pointer;
     }
@@ -295,7 +305,7 @@ button {
         "message message"
         "settings settings"; 
     }
-    
+
     /* Sections */
     .traffic {
         grid-area: traffic;
