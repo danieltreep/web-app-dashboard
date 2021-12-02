@@ -76,7 +76,7 @@ h4 {
 /* Tab */
 .dashboard {
     display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    grid-template-columns: 150px 1fr;
     grid-area: dashboard;
 }
 h2 {
@@ -89,8 +89,25 @@ h2 {
     border: solid 1px lightgrey;
     border-right: none;
 }
-/* Traffic */
 
+/* Alert */
+.alert {
+    grid-area: alert;
+}
+.alert-banner {
+    display: flex;
+    justify-content: space-between;
+    background: rgb(106, 107, 201);
+    color: white;
+    margin: 1rem 1rem 0;
+    padding: 0 1rem;
+    border-radius: 5px;
+}
+.alert p {
+    margin: .5rem 0;
+}
+
+/* Traffic */
 .traffic-nav-link {
     padding: .5rem .8rem;
 }
@@ -150,7 +167,8 @@ h2 {
 .members-container {
     display: grid;
     justify-items: center;
-    padding: 1rem;
+    margin: 1rem;
+    padding: 0 0 1rem;
     border-bottom: solid 1px lightgrey;
 }
 .members-text {
@@ -171,6 +189,7 @@ h2 {
 .arrow {
     display: none;
 }
+
 /* Input */
 .form-field,
 .form-area {
@@ -240,6 +259,13 @@ button {
     .container {
         border: solid 1px lightgrey;
     }
+    .members-container:last-child {
+        border: none;
+        padding-bottom: 0;
+    }
+    .alert-banner-close:hover {
+        cursor: pointer;
+    }
 
     /* Nav sidebar */
     .main-nav {
@@ -257,9 +283,10 @@ button {
     }
     main {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
         grid-template-areas: 
         "dashboard dashboard"
+        "alert alert"
         "traffic traffic"
         "daily mobile"
         "social social"
@@ -268,6 +295,7 @@ button {
         "message message"
         "settings settings"; 
     }
+    
     /* Sections */
     .traffic {
         grid-area: traffic;
@@ -341,6 +369,7 @@ button {
     main {
         grid-template-areas: 
         "dashboard dashboard"
+        "alert alert"
         "traffic traffic"
         "daily mobile"
         "social social"
