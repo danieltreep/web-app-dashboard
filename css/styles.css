@@ -5,26 +5,37 @@
     font-weight: normal;
 }
 /* Layout */
-main {
-    grid-area: main;
+.grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+    "header"
+    "nav"
+    "dashboard"
+    "traffic"
+    "daily"
+    "social"
+    "members"
+    "recent"
+    "message"
+    "settings";
 }
 header {
     background-color: rgb(106, 107, 201);
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 2.2fr;
-    justify-items: center;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: .5rem 0;
+    padding: .5rem 1rem;
     grid-area: header;
 }
 h1,
 h3 {
     color: white;
+    margin: 0 ;
 }
 h1 {
     font-size: 1.5rem;
-    margin: 0 auto;
-    justify-self: start ;
+    flex-grow: 2;
 }
 h3 {
     font-size: .8rem;
@@ -34,22 +45,21 @@ h4 {
     text-transform: uppercase;
     margin: 1rem 1rem .5rem 1rem ;
 }
-.container {
-    border-bottom: solid 2px lightgrey;
-}
-
-/* Nav */
 .bell {
     border-right: solid rgba(255, 255, 255, 0.329) 1px;
-    padding: .3rem .8rem;
+    padding: .5rem;
     fill: white;
 }
 .main-profile-pic {
     border-radius: 50%;
     height: 35px;
-    justify-self: end;
-    margin: 0;
+    margin: 0 .5rem;
 }
+.container {
+    border-bottom: solid 2px lightgrey;
+}
+
+/* Nav */
 .main-nav {
     display: grid;
     background-color: rgb(80, 68, 119);
@@ -95,18 +105,21 @@ h2 {
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     padding: 0 1rem;
-    margin: 0 auto;
+    margin: 0;
 }
-
 /* Socials */
+.all-socials {
+    display: grid;
+    margin: 1rem ;
+}
 .social-container {
     display: grid;
     background-color: rgba(236, 235, 235, 0.726);
     border: solid 1px lightgrey;
     border-radius: 5px;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: calc(70px + 2rem) 1fr;
     align-items: center;
-    margin: 1rem;
+    margin: .5rem 0;
 }
 .social-image {
     background-color: rgb(106, 107, 201);
@@ -129,7 +142,7 @@ h2 {
     font-size: 1.5rem;
 }
 .social-text p:nth-child(2) {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     color: grey;
 }
 
@@ -143,9 +156,11 @@ h2 {
 .members-text {
     display: grid;
     text-align: center;
+    margin: .5rem 0 0;
 }
 .members-text p,
-.members-text a {
+.members-text a,
+.members-container p {
     margin: 0 auto;
     text-decoration: none;
 }
@@ -153,48 +168,54 @@ h2 {
     border-radius: 50%;
     height: 75px;
 }
-
+.arrow {
+    display: none;
+}
 /* Input */
 .form-field,
 .form-area {
     margin: 0 auto 1rem;
     display: grid;
-    width: 90%;
+    width: calc(100% - 2rem);
     padding: 1rem;
     border: none;
-    outline: lightgrey;
     border-radius: 5px;
     background: rgba(236, 235, 235, 0.726);
 }
 .form-area {
-    height: 200px;
+    height: 150px;
 }
 .widget-container {
     display: grid;
     justify-items: center;
 }
+.widget-container:nth-of-type(1) {
+    margin-top: 1rem;
+}
 button {
     padding: .8rem;
-    width: 90%;
     margin: 0 0 1rem;
     border-radius: 5px;
     border: none;
 }
+#send {
+    width: calc(100% - 2rem);
+}
 .settings-button {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: stretch;
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
-    width: 90%;
+    width: calc(100% - 2rem);
 }
 .button-primary {
     background-color: rgb(106, 107, 201);
     color: white;
+    width: calc(50% - .5rem);
 }
 .button-disabled {
-    justify-self: end;
     background: grey;
     color: white;
+    width: calc(50% - .5rem);
 }
 .switch-light {
     display: grid;
@@ -210,23 +231,19 @@ button {
 @media screen and (min-width: 768px) {
     /* Layout */
     .grid-container {
-        display: grid;
-        grid-template-columns: .6fr 8fr;
+        grid-template-columns: 55px 1fr;
         grid-template-areas: 
         "header header"
         "nav main"
         ;
     }
-    /* Header */
-    .header {
-        display: flex;
-        justify-content: flex-start;
+    .container {
+        border: solid 1px lightgrey;
     }
 
     /* Nav sidebar */
     .main-nav {
         height: 100%;
-        width: 60px;
         align-items: flex-start;
         justify-items: center;
     }
@@ -238,7 +255,6 @@ button {
         height: 25px;
         margin: .6rem 1rem;
     }
-    /* Layout */
     main {
         display: grid;
         grid-template-columns: 50% 50%;
@@ -250,20 +266,24 @@ button {
         "members members"
         "recent recent"
         "message message"
-        "settings settings";
-        
+        "settings settings"; 
     }
     /* Sections */
     .traffic {
         grid-area: traffic;
+        border-top: none;
     }
     .traffic-header {
         display: grid;
         grid-template-columns: 50% 50%;
         align-items: center;
+        margin-top: .5rem;
     }
-    .traffic-nav-link {
-        margin-top: 1rem;
+    .traffic-nav {
+        justify-self: right;
+    }
+    .traffic-header h4:nth-of-type(1) {
+        margin-top: .5rem;
     }
     .daily {
         grid-area: daily;
@@ -276,24 +296,59 @@ button {
         grid-area: social;
     }
     .all-socials {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); 
-        justify-items: center;
-        margin: 0 1rem 1rem;
+        display: flex; 
+        justify-content: space-between;
+        margin: 0 auto;
+        width: calc(100% - 2rem);
     }
     .social-container {
-        margin: 0 .5rem 0 0;
+        margin: 0 0 1rem;
+        width: 32%;
     }
     .members {
         grid-area: members;
     }
+    .members-container {
+        grid-template-columns: 75px 1fr 75px;
+        justify-items: start;
+        align-items: center;
+    }
+    .members-text {
+        display: block;
+        text-align: start;
+        padding-left: 1rem;
+        margin: 0;
+    }
     .recent {
         grid-area: recent;
+    }
+    .arrow {
+        display: block;
+        color: rgb(106, 107, 201);
     }
     .message {
         grid-area: message;
     }
     .settings {
         grid-area: settings;
+    }
+    .switch-light {
+        max-width: 50%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    main {
+        grid-template-areas: 
+        "dashboard dashboard"
+        "traffic traffic"
+        "daily mobile"
+        "social social"
+        "members recent"
+        "message settings"
+    } 
+    .settings {
+        display: grid;
+        align-items: end;
     }
 }
