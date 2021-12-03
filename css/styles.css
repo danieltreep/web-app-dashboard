@@ -20,6 +20,11 @@
     "message"
     "settings";
 }
+.container {
+    border-bottom: solid 2px lightgrey;
+}
+
+/* Header */
 header {
     background-color: rgb(106, 107, 201);
     display: flex;
@@ -46,17 +51,40 @@ h4 {
     margin: 1rem 1rem .5rem 1rem ;
 }
 .bell {
-    border-right: solid rgba(255, 255, 255, 0.329) 1px;
     padding: .5rem;
     fill: white;
+    border-right: solid rgba(255, 255, 255, 0.329) 1px;
+    display: grid;
+}
+.bell-svg:hover {
+    animation: ring .5s;
+    fill: yellow;
+}
+@keyframes ring {
+    20% {
+        transform: rotate(35deg);
+    } 
+    40% {
+        transform: rotate(-35deg);
+    }
+    60% {
+        transform: rotate(20deg);
+    }
+    80% {
+        transform: rotate(-20deg);
+    }
+}
+.dot {
+    background: yellowgreen;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    justify-self: end;
 }
 .main-profile-pic {
     border-radius: 50%;
     height: 35px;
     margin: 0 .5rem;
-}
-.container {
-    border-bottom: solid 2px lightgrey;
 }
 
 /* Nav */
@@ -72,7 +100,9 @@ h4 {
     height: 25px;
     margin: .5rem .8rem;
 }
-
+a {
+    text-decoration: none;
+}
 /* Tab */
 .dashboard {
     display: grid;

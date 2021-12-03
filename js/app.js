@@ -3,7 +3,7 @@ const alertBanner = document.getElementById("alert");
 
 alertBanner.innerHTML = `
     <div class="alert-banner">
-        <p><strong>Alert:</strong> The chickens have escaped! Go get 'em</p>
+        <p><strong>Alert:</strong> The chickens have escaped!</p>
         <p class="alert-banner-close">x</p>
     </div>
     `;
@@ -13,6 +13,14 @@ const x = document.querySelector(".alert-banner-close");
 
 x.addEventListener('click', () => {
     alertBanner.style.display = "none"
+});
+
+// Remove dot when bell is clicked
+const bell = document.querySelector(".bell-svg");
+const dot = document.querySelector(".dot");
+
+bell.addEventListener('click', () => {
+    dot.style.display = "none";
 });
 
 // Traffic Chart
@@ -119,4 +127,22 @@ let mobileChart = new Chart(mobileCanvas, {
     type: 'doughnut',
     data: mobileData,
     options: mobileOptions
+});
+
+// Messages
+const user = document.getElementById("userField");
+const message = document.getElementById("messageField");
+const send = document.getElementById("send");
+
+send.addEventListener('click', () => {
+    // ensure user and message fields are filled out
+    if (user.value === "" && message.value === "") {
+    alert("Please fill out user and message fields before sending");
+    } else if (user.value === "" ) {
+    alert("Please fill out user field before sending");
+    } else if (message.value === "" ) {
+    alert("Please fill out message field before sending");
+    } else {
+    alert(`Message successfully sent to: ${user.value}`);
+    }
 });
