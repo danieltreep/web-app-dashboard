@@ -59,6 +59,7 @@ h4 {
 .bell-svg:hover {
     animation: ring .5s;
     fill: yellow;
+
 }
 @keyframes ring {
     20% {
@@ -80,6 +81,27 @@ h4 {
     width: 4px;
     border-radius: 50%;
     justify-self: end;
+}
+.dropdown {
+    position: relative;
+}
+.alert-item {
+    padding: .5rem;
+    margin: .5rem;
+    width: 100%;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    transform: translate(-25px, 0);
+    z-index: 1;
+    background-color: rgb(233, 233, 240);
+    border: solid 2px violet;
+    border-radius: 5px;
+}
+.bell:hover .dropdown-content {
+    display: grid;
+    /* justify-items: center; */
 }
 .main-profile-pic {
     border-radius: 50%;
