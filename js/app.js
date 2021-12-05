@@ -15,23 +15,61 @@ x.addEventListener('click', () => {
     alertBanner.style.display = "none"
 });
 
-// Remove dot when bell is clicked
+// When bell is clicked remove dot, show dropdown
 const bell = document.querySelector(".bell-svg");
 const dot = document.querySelector(".dot");
+const dropdown = document.querySelector(".dropdown-content");
+let dropdownShow = 0;
 
 bell.addEventListener('click', () => {
     dot.style.display = "none";
+
+    if (dropdownShow === 0) {
+        dropdown.style.display = "block";
+        dropdownShow = 1;
+    } else if (dropdownShow === 1) {
+        dropdown.style.display = "none"; 
+        dropdownShow = 0;
+    }
 });
 
-// Traffic Chart
+// Traffic Chart 
 const trafficCanvas = document.getElementById("traffic-chart");
 
-let trafficData = {
-    labels: ["16-22", "23-29", "30-5", "6-12", "13-19", "20-26", "27-3",
-    "4-10", "11-17", "18-24", "25-31"],
+let trafficDataHourly = {
+    labels: ["Hour 1", "Hour 1", "Hour 1", "Hour 1", "Hour 1", "Hour 1", "Hour 1", 
+    "Hour 1", "Hour 1", "Hour 1", "Hour 1"], 
     datasets: [{
-        data: [750, 1250, 1000, 2000, 1500, 1750, 1250, 1850, 2250, 1500,
-    2800],
+        data: [50, 50, 10, 20, 50, 40, 20, 50, 20, 10, 80],
+        backgroundColor: 'rgba(116, 119, 191, .3)',
+        borderWidth: 1,
+    }]
+};
+let trafficDataDaily = {
+    labels: ["Day 1", "Day 1", "Day 1", "Day 1", "Day 1", "Day 1", "Day 1", 
+    "Day 1", "Day 1", "Day 1", "Day 1"], 
+    datasets: [{
+        data: [750, 250, 100, 200, 150, 750, 250, 150, 250, 150, 280],
+        backgroundColor: 'rgba(116, 119, 191, .3)',
+        borderWidth: 1,
+    }]
+};
+let trafficDataWeekly = {
+    labels: ["Week 1", "Week 1", "Week 1", "Week 1", "Week 1", "Week 1", "Week 1", 
+    "Week 1", "Week 1", "Week 1", "Week 1"],
+    datasets: [{
+        data: [1750, 2250, 3000, 2000, 1800, 1250, 2250, 2850, 3250, 2500,
+    1800],
+        backgroundColor: 'rgba(116, 119, 191, .3)',
+        borderWidth: 1,
+    }]
+};
+let trafficDataMonthly = {
+    labels: ["Month 1", "Month 1" ,"Month 1", "Month 1", "Month 1", "Month 1", 
+    "Month 1", "Month 1", "Month 1", "Month 1", "Month 1"],
+    datasets: [{
+        data: [11750, 11250, 12000, 12000, 12500, 14750, 15250, 13850, 12250, 16500,
+    12800],
         backgroundColor: 'rgba(116, 119, 191, .3)',
         borderWidth: 1,
     }]
@@ -55,10 +93,65 @@ let trafficOptions = {
         }
     }
 };
+
 let trafficChart = new Chart(trafficCanvas, {
     type: 'line',
-    data: trafficData,
+    data: trafficDataHourly,
     options: trafficOptions
+});
+
+// Switch data on traffic Nav
+const trafficNav = document.querySelector(".traffic-nav");
+
+trafficNav.addEventListener('click', (event) => {
+    
+    let tab = event.target;
+    let activeTab = document.querySelector(".active");
+
+    // Check if tab is not already active, if so add class and remove from previous
+    if (tab.className !== "traffic-nav-link active" && tab.tagName === "LI") {
+        
+        tab.className = "traffic-nav-link active";
+        activeTab.className = "traffic-nav-link";
+        
+        // Activate new data sets based on tabs
+        if (tab.textContent.includes("Hourly")) {
+            
+            trafficChart.destroy();
+            trafficChart = new Chart(trafficCanvas, {
+                type: 'line',
+                data: trafficDataHourly,
+                options: trafficOptions
+            });
+
+        } else if (tab.textContent.includes("Daily")) {
+
+            trafficChart.destroy();
+            trafficChart = new Chart(trafficCanvas, {
+                type: 'line',
+                data: trafficDataDaily,
+                options: trafficOptions
+            });
+                
+        } else if (tab.textContent.includes("Weekly")) {
+
+            trafficChart.destroy();
+            trafficChart = new Chart(trafficCanvas, {
+                type: 'line',
+                data: trafficDataWeekly,
+                options: trafficOptions
+            });
+
+        } else if (tab.textContent.includes("Monthly")) {
+
+            trafficChart.destroy();
+            trafficChart = new Chart(trafficCanvas, {
+                type: 'line',
+                data: trafficDataMonthly,
+                options: trafficOptions
+            });
+        }
+    } 
 });
 
 // Daily Chart
