@@ -275,9 +275,30 @@ h2 {
 .form-area {
     height: 150px;
 }
+
+.autocomplete {
+    display: none;
+    position: absolute;
+    background-color: rgb(233, 233, 240);
+    border: solid 1px rgb(106, 107, 201);
+    border-radius: 5px;
+    z-index: 1;
+    list-style: none;
+    margin: 0;
+    /*position the autocomplete items to be the same width as the container:*/
+    padding: 0;
+    top: 3rem;
+    left: 1rem;
+    right: 1rem;
+}
+.matching-name {
+    padding: .5rem 1rem;
+    text-align: left;
+}
 .widget-container {
     display: grid;
     justify-items: center;
+    position: relative;
 }
 .widget-container:nth-of-type(1) {
     margin-top: 1rem;

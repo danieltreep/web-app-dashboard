@@ -226,6 +226,7 @@ let mobileChart = new Chart(mobileCanvas, {
 const user = document.getElementById("userField");
 const message = document.getElementById("messageField");
 const send = document.getElementById("send");
+const autoComplete = document.querySelector(".autocomplete");
 
 send.addEventListener('click', () => {
     // ensure user and message fields are filled out
@@ -239,3 +240,49 @@ send.addEventListener('click', () => {
     alert(`Message successfully sent to: ${user.value}`);
     }
 });
+
+// Autocomplete user input
+const userNames = ["Victoria Chambers", "Dale Byrd", "Dawn Wood", "Dan Oliver", "Gandalf", "Khaleesi", "Santa Claus", "Homer Simpson", "Garfield", "Handsome Jack", "Ragnar Lothbrok"];
+
+user.addEventListener("input", (event) => {
+    let inputValue = event.target.value;
+    inputValue = inputValue.toUpperCase();
+    let userNameFiltered = [];
+
+    // Check if input value matches array of usernames and create new array from filter 
+    if (inputValue) {
+
+        // Create new array from filter
+        userNameFiltered = userNames.filter(userNames => userNames.toUpperCase().includes(inputValue));
+
+        // Create new array with li elements from each filtered user name
+        userNameFiltered = userNameFiltered.map(userNames => `<li class="matching-name"> ${userNames} </li>`);
+    }
+
+    // Function creates html from filtered username array
+    showUsernames(userNameFiltered);
+    
+});
+
+function showUsernames(userNameFiltered) {
+    let html = '';
+
+    // If the array is empty, show nothing. Otherwise combine the array items to a string
+    if (!userNameFiltered.length) {
+        html = '';
+        autoComplete.style.display = "none";
+    } else {
+        html = userNameFiltered.join('');
+        autoComplete.style.display = "block";
+    }
+
+    // Insert the string into the html
+    autoComplete.innerHTML = html;
+}
+
+// Remove autocomplete if it is not active
+document.addEventListener('click', () => {
+    if (user !== document.activeElement) {
+        autoComplete.style.display = "none";
+    }
+})
