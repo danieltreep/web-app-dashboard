@@ -261,7 +261,6 @@ user.addEventListener("input", (event) => {
 
     // Function creates html from filtered username array
     showUsernames(userNameFiltered);
-    
 });
 
 function showUsernames(userNameFiltered) {
@@ -280,9 +279,42 @@ function showUsernames(userNameFiltered) {
     autoComplete.innerHTML = html;
 }
 
-// Remove autocomplete if it is not active
+// Remove autocomplete if it is not focused
 document.addEventListener('click', () => {
     if (user !== document.activeElement) {
         autoComplete.style.display = "none";
     }
-})
+});
+
+// Local storage
+const save = document.getElementById("save");
+const timezone = document.getElementById("timezone");
+const clear = document.getElementById("cancel");
+const email = document.querySelector(".email");
+const public = document.querySelector(".public");
+
+save.addEventListener('click', () => {
+    localStorage.setItem("timezone", timezone.value);
+    localStorage.setItem("email", email.checked)
+    localStorage.setItem("public", public.checked)
+});
+
+clear.addEventListener('click', () => {
+    localStorage.clear();
+});
+
+function loadStorage() {
+
+    if (localStorage.timezone) {
+        timezone.value = localStorage.timezone;
+    }
+
+    if (localStorage.email === "true") {
+        email.checked = true;
+    }
+
+    if (localStorage.public === "true") {
+        public.checked = true;
+    }
+}; 
+loadStorage();
