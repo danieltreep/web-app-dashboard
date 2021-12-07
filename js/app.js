@@ -292,6 +292,7 @@ const timezone = document.getElementById("timezone");
 const clear = document.getElementById("cancel");
 const email = document.querySelector(".email");
 const public = document.querySelector(".public");
+const select = document.getElementById("select");
 
 save.addEventListener('click', () => {
     localStorage.setItem("timezone", timezone.value);
@@ -300,7 +301,12 @@ save.addEventListener('click', () => {
 });
 
 clear.addEventListener('click', () => {
-    localStorage.clear();
+    localStorage.removeItem("email");
+    localStorage.removeItem("public");
+    localStorage.removeItem("timezone");
+    timezone.value = select.value;
+    email.checked = false;
+    public.checked = false;
 });
 
 function loadStorage() {
